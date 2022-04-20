@@ -58,15 +58,15 @@ app.get('/', (req, res) => {
 })
 
 
-app.get('/staffs',(req, res) => {
-  dbCon.query('SELECT * FROM staffs',(error, results, fields)=>{
+app.get('/articles',(req, res) => {
+  dbCon.query('SELECT * FROM durablearticles',(error, results, fields)=>{
     if(error) throw error
 
     let massages =""
     if(results === undefined || results.length == 0){
-      logger.warn('Staff table is empty');
+      logger.warn('Table is empty');
     }else {
-      logger.info('Successful get all staff');
+      logger.info('Successful get all articles');
     }
     
     res.send({error: false, data: results})
