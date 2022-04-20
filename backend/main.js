@@ -73,6 +73,28 @@ app.get('/articles',(req, res) => {
   })
 })
 
+app.post('/add',(req, res) => {
+  let name = req.body.name
+  let id = req.body.id
+  let location = req.body.location
+  let condition = req.body.condition
+
+
+  if(!name || !location || !condition){
+    res.status(400).send({message : "Please input all info."})
+    logger.error("Incomplete information");
+  }else{
+    dbCon.query(
+      "INSERT INTO durablearticles (name, id, location, condition) VALUES(?,?,?,?)", [name, id, location, condition],(error,results,fields)=>{
+      if(error) throw error;
+
+      logger.info("sussessfuly added");
+
+      return res.send({ error: false, data: results, message: "successfully added"})
+    })
+  }
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
