@@ -61,7 +61,6 @@ app.get('/articles', (req, res) => {
             logger.info('Successful get all articles');
             res.send(results)
         }
-
     })
 })
 
@@ -73,13 +72,24 @@ app.post('/addarticles', (req, res) => {
 
     db.query(
         "INSERT INTO durablearticles (name, id, location, problem) VALUES(?,?,?,?)",
-        [name, id, location,problem], (error, results,) => {
+        [name, id, location, problem], (error, results,) => {
             if (error) throw error;
             else {
                 logger.info("sussessfuly added");
                 return res.send("successfully added")
             }
-        })
+        });
+})
+
+app.delete('/delarticles/:rid', (req, res) => {
+    let rid = req.params.rid;
+    db.query("DELETE FROM durablearticles WHERE durablearticles.rid = ?", [rid], (err, results) =>{
+        if(err){
+            console.log(err);
+        }else{
+            res.send(results);
+        }
+    })
 })
 
 app.listen(port, () => {
