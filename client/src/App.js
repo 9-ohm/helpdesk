@@ -16,7 +16,7 @@ function App() {
       setArticleList(response.data)
     })
   }
-  
+
 
   const addArticles = () => {
     Axios.post('http://localhost:3001/addarticles', {
@@ -71,9 +71,9 @@ function App() {
                 <option value="โต๊ะ/เก้าอี้">โต๊ะ/เก้าอี้</option>
               </Form.Control>
             </Form.Group>
-            
+
           </div>
-          
+
           <div className="mb-3">
             <label htmlFor="ทะเบียนครุภัณฑ์" className="form-label">ทะเบียนครุภัณฑ์:</label>
             <input
@@ -131,10 +131,10 @@ function App() {
                 <p className="card-text">ทะเบียนครุภัณฑ์: {val.id}</p>
                 <p className="card-text">ตำแหน่งที่ตั้งอุปกรณ์: {val.location}</p>
                 <p className="card-text">อาการเสีย: {val.problem}</p>
-                <button className="btn btn-danger"  onClick={() => {delArticles(val.rid)}}>ยกเลิกรายการ</button>
-                
+                <button className="btn btn-danger" onClick={() => { delArticles(val.rid) }}>ยกเลิกรายการ</button>
+
               </div>
-              
+
             </div>
           )
         })}
@@ -142,38 +142,4 @@ function App() {
     </div>
   );
 }
-/*<Form.Group controlId="formBasicSelect">
-<Form.Control
-  as="select"
-  value=""
-  onChange={(event) => {
-   
-    setType(event.target.value);
-    console.log(event.target.value)
-  }}
->
-  <option selected value="">โปรดเลือกปัญหาที่พบ</option>
-  <option value="เปิดไม่ติด">เปิดไม่ติด</option>
-  <option value="ใช้งานอินเทอร์เน็ตไม่ได้">ใช้งานอินเทอร์เน็ตไม่ได้</option>
-</Form.Control>
-</Form.Group>*/
-
-
-/*<input
-  type="text"
-  className="form-control"
-  placeholder="ระบุชื่อครุภัณฑ์"
-  onChange={(event) => {
-    setName(event.target.value)
-  }}
-/>*/
-
-/*<input
-type="text"
-className="form-control"
-placeholder="ระบุปัญหาที่พบ"
-onChange={(event) => {
-  setProblem(event.target.value)
-}}
-/>*/
 export default App;
